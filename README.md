@@ -1,2 +1,2 @@
-# js-calculator-project
-A simple calculator made for The Odin Project.
+# A simple calculator made with JS and ❤️
+[Live!](https://snakecase.github.io/js-calculator-project/)
