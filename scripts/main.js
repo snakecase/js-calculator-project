@@ -72,7 +72,7 @@ const evaluate = function () {
 }
 
 const cleanEntry = function () {
-	if (inputField.textContent.length === 1) {
+	if (evaluated || inputField.textContent.length === 1) {
 		inputField.textContent = `0`;
 	} else if (isLastOperator(inputField.textContent)) {
 		// Remove operator and spaces around it
