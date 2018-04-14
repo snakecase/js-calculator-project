@@ -24,13 +24,11 @@ const isLastOperator = function (item) {
 }
 
 const inputOperator = function (item) {
-	if (evaluated) {
-		evaluated = false;
-		inputField.textContent = `0 ${item}`;
-	} else if (isLastOperator(inputField.textContent)) {
+	if (isLastOperator(inputField.textContent)) {
 		// Replace operator if it is set already
 		inputField.textContent = inputField.textContent.replace(/ [-+*/] $/, ` ${item} `);
 	} else {
+		evaluated = false;
 		inputField.textContent += ` ${item} `;
 	}
 }
