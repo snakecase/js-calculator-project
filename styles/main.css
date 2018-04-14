@@ -1,12 +1,12 @@
 #calc {
 	display: grid;
-	grid-template: 1fr 5fr/230px;
+	grid-template: 1fr 5fr/240px;
 	grid-gap: 3px;
 	margin: 10% 35%;
 }
 
 #calc-display {
-	border: 1px solid black;
+	border: 1px solid gray;
 	padding: 2px 3px 0 0;
 	overflow: hidden;
 	white-space: nowrap;
@@ -29,6 +29,8 @@
 #calc-body button {
 	font-family: 'Roboto', sans-serif;
 	font-size: 0.9em;
+	background-color: white;
+	border: 1px solid lightgray;
 }
 
 #calc-numpad {
