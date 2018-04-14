@@ -15,21 +15,20 @@ const inputNumber = function (item) {
 	}
 }
 
-const isOperator = function (item) {
-	return /[-+*/]/.test(item);
-}
-
 const isLastOperator = function (item) {
 	return / [-+*/] $/.test(item);
 }
 
 const inputOperator = function (item) {
 	if (isLastOperator(inputField.textContent)) {
-		// Replace operator if it is set already
+		// Replace if it is set already
 		inputField.textContent = inputField.textContent.replace(/ [-+*/] $/, ` ${item} `);
-	} else {
+	} else if (isFinite(inputField.textContent)) {
 		evaluated = false;
 		inputField.textContent += ` ${item} `;
+	} else {
+		evaluated = false;
+		inputField.textContent = `0 ${item} `;
 	}
 }
 
@@ -55,17 +54,23 @@ const isDangerousToEval = function (item) {
 	/[^0-9-+*/. ]/.test(item);
 }
 
+const isOperator = function (item) {
+	return /[-+*/]/.test(item);
+}
+
 const evaluate = function () {
 	if (evaluated) {
 		evaluated = false;
 		inputField.textContent = `0`;
-	} else if (isDangerousToEval(inputField.textContent)) {
+	} else if (isDangerousToEval(inputField.textContent) || !isOperator(inputField.textContent)) {
+		// The second one checks: if no operator present then nothing to evaluate
 		return;
-	} else if (!isOperator(inputField.textContent)) {
-		return;
-	} else if (/[0-9]$/.test(inputField.textContent)) {
+	} else if (isFinite(eval(inputField.textContent))) {
 		evaluated = true;
 		inputField.textContent = eval(inputField.textContent);
+	} else {
+		evaluated = true;
+		inputField.textContent = `Cannot divide by zero`;
 	}
 }
 
